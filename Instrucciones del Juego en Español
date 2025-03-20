@@ -1,0 +1,17 @@
+Instrucciones del Juego en Español
+Juego de Cartas - Miniapp de Worldcoin
+Objetivo: Adivina si la próxima carta será alta o baja.
+
+Cómo jugar:
+
+Conéctate usando tu World ID haciendo clic en "Conectar con World ID".
+Una vez conectado, elige tu apuesta:
+Apostar Alta: Ganas si la carta es 8, 9, 10, J (11), Q (12) o K (13).
+Apostar Baja: Ganas si la carta es As (1), 2, 3, 4, 5, 6 o 7.
+Haz clic en el botón correspondiente ("Apostar Alta" o "Apostar Baja").
+Se extraerá una carta aleatoria de una baraja estándar (1-13 con palos: ♠, ♥, ♣, ♦).
+El resultado mostrará la carta y si ganaste o perdiste.
+Notas:
+
+Este es un juego de demostración sin apuestas reales.
+¡Diviértete y prueba tu suerte tantas veces como quieras!

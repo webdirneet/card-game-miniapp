@@ -1,0 +1,17 @@
+Game Instructions in English
+Card Game - Worldcoin Miniapp
+Objective: Guess whether the next card will be high or low.
+
+How to play:
+
+Connect using your World ID by clicking "Connect with World ID".
+Once connected, choose your bet:
+Bet High: You win if the card is 8, 9, 10, J (11), Q (12), or K (13).
+Bet Low: You win if the card is Ace (1), 2, 3, 4, 5, 6, or 7.
+Click the corresponding button ("Bet High" or "Bet Low").
+A random card will be drawn from a standard deck (1-13 with suits: ♠, ♥, ♣, ♦).
+The result will display the card and whether you won or lost.
+Notes:
+
+This is a demo game with no real betting involved.
+Have fun and test your luck as many times as you like!

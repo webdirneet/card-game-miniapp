@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Cartas - Worldcoin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <select id="languageSelect">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
+        <h1 id="title">Juego de Cartas</h1>
+        <p id="status">Conéctate para jugar</p>
+        <button id="connectButton">Conectar con World ID</button>
+        <div id="game" class="hidden">
+            <p id="betPrompt">¿La carta será alta (8-13) o baja (1-7)?</p>
+            <button id="betHigh">Apostar Alta</button>
+            <button id="betLow">Apostar Baja</button>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/@worldcoin/minikit-js@latest"></script>
+    <script src="app.js"></script>
+</body>
+</html>
