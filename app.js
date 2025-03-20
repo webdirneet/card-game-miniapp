@@ -1,9 +1,4 @@
-if (!window.MiniKit) {
-    console.log("MiniKit no está disponible");
-    document.getElementById("status").textContent = "Error: MiniKit no cargado";
-} else {
-    console.log("MiniKit cargado correctamente");
-
+document.addEventListener("DOMContentLoaded", () => {
     // Elementos del DOM
     const connectButton = document.getElementById("connectButton");
     const gameDiv = document.getElementById("game");
@@ -15,6 +10,16 @@ if (!window.MiniKit) {
     const betPromptP = document.getElementById("betPrompt");
     const languageSelect = document.getElementById("languageSelect");
     let isConnected = false;
+
+    // Verificar si MiniKit está disponible
+    if (!window.MiniKit) {
+        console.log("MiniKit no está disponible");
+        statusP.textContent = "Por favor, abre esta app en World App.";
+        return; // Detiene la ejecución si MiniKit no está presente
+    }
+
+    console.log("MiniKit cargado correctamente");
+    statusP.textContent = "MiniKit listo. Conéctate para jugar.";
 
     // Textos en ambos idiomas
     const translations = {
@@ -68,9 +73,15 @@ if (!window.MiniKit) {
 
     // Conectar con World ID
     connectButton.addEventListener("click", () => {
-        MiniKit.commands.send("world-id-connect", {});
+        try {
+            MiniKit.commands.send("world-id-connect", { app_id: app_14a7e0b7a8ea8ebfac001b7b8256e0b5 });
+        } catch (error) {
+            console.error("Error al enviar comando de conexión:", error);
+            statusP.textContent = translations[languageSelect.value].statusError;
+        }
     });
 
+    // Escuchar respuesta de World ID
     MiniKit.responses.listen("world-id-connect", (response) => {
         const lang = languageSelect.value;
         if (response.status === "success") {
@@ -79,6 +90,7 @@ if (!window.MiniKit) {
             connectButton.classList.add("hidden");
             gameDiv.classList.remove("hidden");
         } else {
+            console.error("Fallo en la conexión con World ID:", response);
             statusP.textContent = translations[lang].statusError;
         }
     });
@@ -97,14 +109,19 @@ if (!window.MiniKit) {
 
     // Lógica de apuesta
     function play(bet) {
-        const card = drawCard();
-        const isHigh = card.value >= 8;
-        const win = (bet === "high" && isHigh) || (bet === "low" && !isHigh);
-        const lang = languageSelect.value;
-        resultP.textContent = `Carta: ${card.display}. ${win ? translations[lang].win : translations[lang].lose}`;
+        try {
+            const card = drawCard();
+            const isHigh = card.value >= 8;
+            const win = (bet === "high" && isHigh) || (bet === "low" && !isHigh);
+            const lang = languageSelect.value;
+            resultP.textContent = `Carta: ${card.display}. ${win ? translations[lang].win : translations[lang].lose}`;
+        } catch (error) {
+            console.error("Error durante el juego:", error);
+            resultP.textContent = "Error en el juego. Intenta de nuevo.";
+        }
     }
 
     // Event listeners para las apuestas
     betHighButton.addEventListener("click", () => play("high"));
     betLowButton.addEventListener("click", () => play("low"));
-}
+});
